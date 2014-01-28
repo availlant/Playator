@@ -28,8 +28,6 @@ import java.awt.event.ActionEvent;
 
 public class PanelJeu extends JPanel {
 	
-	private JFrame frame;
-	
 	private String jeu;
 	private User player;
 	
@@ -48,8 +46,6 @@ public class PanelJeu extends JPanel {
 	 * Create the panel.
 	 */
 	public PanelJeu(JFrame frame) {
-		this.frame = frame;
-		
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{20, 150, 150, 150, 20, 0};
 		gridBagLayout.rowHeights = new int[]{0, 0, 30, 69, 30, 0, 0, 0, 0};
