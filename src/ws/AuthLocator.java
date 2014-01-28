@@ -22,7 +22,7 @@ public class AuthLocator extends org.apache.axis.client.Service implements ws.Au
     }
 
     // Use to get a proxy class for authPort
-    private java.lang.String authPort_address = "http://localhost/xml/ws/WS.php";
+    private java.lang.String authPort_address = "http://localhost/xml2/ws/WS.php";
 
     public java.lang.String getauthPortAddress() {
         return authPort_address;
