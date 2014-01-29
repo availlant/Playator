@@ -56,6 +56,12 @@ public class AuthPortTypeProxy implements ws.AuthPortType {
     return authPortType.getFile(credentials, fileName);
   }
   
+  public java.lang.String getFileContent(java.lang.String credentials, java.lang.String fileName) throws java.rmi.RemoteException{
+    if (authPortType == null)
+      _initAuthPortTypeProxy();
+    return authPortType.getFileContent(credentials, fileName);
+  }
+  
   public boolean inscription(java.lang.String login, java.lang.String password) throws java.rmi.RemoteException{
     if (authPortType == null)
       _initAuthPortTypeProxy();

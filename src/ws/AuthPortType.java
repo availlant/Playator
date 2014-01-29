@@ -20,6 +20,11 @@ public interface AuthPortType extends java.rmi.Remote {
     public java.lang.String getFile(java.lang.String credentials, java.lang.String fileName) throws java.rmi.RemoteException;
 
     /**
+     * RÃ©cupÃ¨re le contenu du fichier passÃ© en paramÃ¨tre
+     */
+    public java.lang.String getFileContent(java.lang.String credentials, java.lang.String fileName) throws java.rmi.RemoteException;
+
+    /**
      * InsÃ¨re un nouvel utilisateur en base
      */
     public boolean inscription(java.lang.String login, java.lang.String password) throws java.rmi.RemoteException;
