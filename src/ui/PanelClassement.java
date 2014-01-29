@@ -183,11 +183,13 @@ public class PanelClassement extends JPanel {
 			}
 		});	
 		
-		for (int i = 0; i < 3; i++) {
-			classement score = classement.get(i);
-			result[i] = score.joueur + " " + score.points + "pts";
+		int max = classement.size();
+		
+		for (int i = 0; i < (max < 3 ? max : 3); i++) {			
+			classement score = classement.get(i);			
+			result[i] = score.joueur + " " + score.points + "pts";			
 		}
-
+		
 		return result;
 	}
 	
