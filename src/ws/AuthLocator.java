@@ -7,8 +7,30 @@
 
 package ws;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.Properties;
+
 public class AuthLocator extends org.apache.axis.client.Service implements ws.Auth {
 
+	static String url = "";
+	
+	static{
+		String propertiePath = "src/ws/ws.properties";
+
+		Properties properties = new Properties();
+
+		try {
+			properties.load(new FileInputStream(propertiePath));
+			url = properties.getProperty("url");
+		} catch (FileNotFoundException fileNotFoundException) {
+			fileNotFoundException.printStackTrace();
+		} catch (IOException ioException) {
+			ioException.printStackTrace();
+		}
+	}	
+	
     public AuthLocator() {
     }
 
@@ -29,7 +51,7 @@ public class AuthLocator extends org.apache.axis.client.Service implements ws.Au
     }
 
     // The WSDD service name defaults to the port name.
-    private java.lang.String authPortWSDDServiceName = "authPort";
+    private java.lang.String authPortWSDDServiceName = url;
 
     public java.lang.String getauthPortWSDDServiceName() {
         return authPortWSDDServiceName;
