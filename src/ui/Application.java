@@ -7,7 +7,6 @@ import javax.swing.JFrame;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
@@ -25,6 +24,7 @@ public class Application {
 	
 	private PanelListeJeux panelListeJeux;
 	private PanelJeu panelJeu;
+	private PanelClassement panelClassement;
 	
 	private JMenuItem mntmConnexion;
 	private JMenuItem mntmInscription;
@@ -156,5 +156,14 @@ public class Application {
 	{
 		CardLayout cl = (CardLayout)frame.getContentPane().getLayout();
 		cl.show(frame.getContentPane(), panelName);
+	}
+
+	public void GoClassement(String jeu) {
+		if (null != panelClassement)
+			frame.getContentPane().remove(panelClassement);
+		panelClassement = new PanelClassement(jeu, player);
+		frame.getContentPane().add(panelClassement, "panelClassement");
+		
+		redirectTo("panelClassement");
 	}
 }

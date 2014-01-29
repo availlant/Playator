@@ -16,7 +16,7 @@ public class AuthBindingStub extends org.apache.axis.client.Stub implements ws.A
     static org.apache.axis.description.OperationDesc [] _operations;
 
     static {
-        _operations = new org.apache.axis.description.OperationDesc[9];
+        _operations = new org.apache.axis.description.OperationDesc[10];
         _initOperationDesc1();
     }
 
@@ -52,6 +52,19 @@ public class AuthBindingStub extends org.apache.axis.client.Stub implements ws.A
         _operations[1] = oper;
 
         oper = new org.apache.axis.description.OperationDesc();
+        oper.setName("getFileContent");
+        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "credentials"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"), java.lang.String.class, false, false);
+        oper.addParameter(param);
+        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "fileName"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"), java.lang.String.class, false, false);
+        oper.addParameter(param);
+        oper.setReturnType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"));
+        oper.setReturnClass(java.lang.String.class);
+        oper.setReturnQName(new javax.xml.namespace.QName("", "return"));
+        oper.setStyle(org.apache.axis.constants.Style.RPC);
+        oper.setUse(org.apache.axis.constants.Use.ENCODED);
+        _operations[2] = oper;
+
+        oper = new org.apache.axis.description.OperationDesc();
         oper.setName("inscription");
         param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "Login"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"), java.lang.String.class, false, false);
         oper.addParameter(param);
@@ -62,7 +75,7 @@ public class AuthBindingStub extends org.apache.axis.client.Stub implements ws.A
         oper.setReturnQName(new javax.xml.namespace.QName("", "return"));
         oper.setStyle(org.apache.axis.constants.Style.RPC);
         oper.setUse(org.apache.axis.constants.Use.ENCODED);
-        _operations[2] = oper;
+        _operations[3] = oper;
 
         oper = new org.apache.axis.description.OperationDesc();
         oper.setName("LoginAlreadyExists");
@@ -73,7 +86,7 @@ public class AuthBindingStub extends org.apache.axis.client.Stub implements ws.A
         oper.setReturnQName(new javax.xml.namespace.QName("", "return"));
         oper.setStyle(org.apache.axis.constants.Style.RPC);
         oper.setUse(org.apache.axis.constants.Use.ENCODED);
-        _operations[3] = oper;
+        _operations[4] = oper;
 
         oper = new org.apache.axis.description.OperationDesc();
         oper.setName("Authentication");
@@ -86,7 +99,7 @@ public class AuthBindingStub extends org.apache.axis.client.Stub implements ws.A
         oper.setReturnQName(new javax.xml.namespace.QName("", "return"));
         oper.setStyle(org.apache.axis.constants.Style.RPC);
         oper.setUse(org.apache.axis.constants.Use.ENCODED);
-        _operations[4] = oper;
+        _operations[5] = oper;
 
         oper = new org.apache.axis.description.OperationDesc();
         oper.setName("searchJeu");
@@ -99,7 +112,7 @@ public class AuthBindingStub extends org.apache.axis.client.Stub implements ws.A
         oper.setReturnQName(new javax.xml.namespace.QName("", "return"));
         oper.setStyle(org.apache.axis.constants.Style.RPC);
         oper.setUse(org.apache.axis.constants.Use.ENCODED);
-        _operations[5] = oper;
+        _operations[6] = oper;
 
         oper = new org.apache.axis.description.OperationDesc();
         oper.setName("getSituationJeu");
@@ -114,7 +127,7 @@ public class AuthBindingStub extends org.apache.axis.client.Stub implements ws.A
         oper.setReturnQName(new javax.xml.namespace.QName("", "return"));
         oper.setStyle(org.apache.axis.constants.Style.RPC);
         oper.setUse(org.apache.axis.constants.Use.ENCODED);
-        _operations[6] = oper;
+        _operations[7] = oper;
 
         oper = new org.apache.axis.description.OperationDesc();
         oper.setName("getLastSituationJeu");
@@ -127,7 +140,7 @@ public class AuthBindingStub extends org.apache.axis.client.Stub implements ws.A
         oper.setReturnQName(new javax.xml.namespace.QName("", "return"));
         oper.setStyle(org.apache.axis.constants.Style.RPC);
         oper.setUse(org.apache.axis.constants.Use.ENCODED);
-        _operations[7] = oper;
+        _operations[8] = oper;
 
         oper = new org.apache.axis.description.OperationDesc();
         oper.setName("getAlreadyPlayedGames");
@@ -138,7 +151,7 @@ public class AuthBindingStub extends org.apache.axis.client.Stub implements ws.A
         oper.setReturnQName(new javax.xml.namespace.QName("", "return"));
         oper.setStyle(org.apache.axis.constants.Style.RPC);
         oper.setUse(org.apache.axis.constants.Use.ENCODED);
-        _operations[8] = oper;
+        _operations[9] = oper;
 
     }
 
@@ -255,12 +268,43 @@ public class AuthBindingStub extends org.apache.axis.client.Stub implements ws.A
 }
     }
 
-    public boolean inscription(java.lang.String login, java.lang.String password) throws java.rmi.RemoteException {
+    public java.lang.String getFileContent(java.lang.String credentials, java.lang.String fileName) throws java.rmi.RemoteException {
         if (super.cachedEndpoint == null) {
             throw new org.apache.axis.NoEndPointException();
         }
         org.apache.axis.client.Call _call = createCall();
         _call.setOperation(_operations[2]);
+        _call.setUseSOAPAction(true);
+        _call.setSOAPActionURI("urn:ws#getFileContent");
+        _call.setSOAPVersion(org.apache.axis.soap.SOAPConstants.SOAP11_CONSTANTS);
+        _call.setOperationName(new javax.xml.namespace.QName("urn:ws", "getFileContent"));
+
+        setRequestHeaders(_call);
+        setAttachments(_call);
+ try {        java.lang.Object _resp = _call.invoke(new java.lang.Object[] {credentials, fileName});
+
+        if (_resp instanceof java.rmi.RemoteException) {
+            throw (java.rmi.RemoteException)_resp;
+        }
+        else {
+            extractAttachments(_call);
+            try {
+                return (java.lang.String) _resp;
+            } catch (java.lang.Exception _exception) {
+                return (java.lang.String) org.apache.axis.utils.JavaUtils.convert(_resp, java.lang.String.class);
+            }
+        }
+  } catch (org.apache.axis.AxisFault axisFaultException) {
+  throw axisFaultException;
+}
+    }
+
+    public boolean inscription(java.lang.String login, java.lang.String password) throws java.rmi.RemoteException {
+        if (super.cachedEndpoint == null) {
+            throw new org.apache.axis.NoEndPointException();
+        }
+        org.apache.axis.client.Call _call = createCall();
+        _call.setOperation(_operations[3]);
         _call.setUseSOAPAction(true);
         _call.setSOAPActionURI("urn:ws#inscription");
         _call.setSOAPVersion(org.apache.axis.soap.SOAPConstants.SOAP11_CONSTANTS);
@@ -291,7 +335,7 @@ public class AuthBindingStub extends org.apache.axis.client.Stub implements ws.A
             throw new org.apache.axis.NoEndPointException();
         }
         org.apache.axis.client.Call _call = createCall();
-        _call.setOperation(_operations[3]);
+        _call.setOperation(_operations[4]);
         _call.setUseSOAPAction(true);
         _call.setSOAPActionURI("urn:ws#LoginAlreadyExists");
         _call.setSOAPVersion(org.apache.axis.soap.SOAPConstants.SOAP11_CONSTANTS);
@@ -322,7 +366,7 @@ public class AuthBindingStub extends org.apache.axis.client.Stub implements ws.A
             throw new org.apache.axis.NoEndPointException();
         }
         org.apache.axis.client.Call _call = createCall();
-        _call.setOperation(_operations[4]);
+        _call.setOperation(_operations[5]);
         _call.setUseSOAPAction(true);
         _call.setSOAPActionURI("urn:ws#Authentication");
         _call.setSOAPVersion(org.apache.axis.soap.SOAPConstants.SOAP11_CONSTANTS);
@@ -353,7 +397,7 @@ public class AuthBindingStub extends org.apache.axis.client.Stub implements ws.A
             throw new org.apache.axis.NoEndPointException();
         }
         org.apache.axis.client.Call _call = createCall();
-        _call.setOperation(_operations[5]);
+        _call.setOperation(_operations[6]);
         _call.setUseSOAPAction(true);
         _call.setSOAPActionURI("urn:ws#searchJeu");
         _call.setSOAPVersion(org.apache.axis.soap.SOAPConstants.SOAP11_CONSTANTS);
@@ -384,7 +428,7 @@ public class AuthBindingStub extends org.apache.axis.client.Stub implements ws.A
             throw new org.apache.axis.NoEndPointException();
         }
         org.apache.axis.client.Call _call = createCall();
-        _call.setOperation(_operations[6]);
+        _call.setOperation(_operations[7]);
         _call.setUseSOAPAction(true);
         _call.setSOAPActionURI("urn:ws#getSituationJeu");
         _call.setSOAPVersion(org.apache.axis.soap.SOAPConstants.SOAP11_CONSTANTS);
@@ -415,7 +459,7 @@ public class AuthBindingStub extends org.apache.axis.client.Stub implements ws.A
             throw new org.apache.axis.NoEndPointException();
         }
         org.apache.axis.client.Call _call = createCall();
-        _call.setOperation(_operations[7]);
+        _call.setOperation(_operations[8]);
         _call.setUseSOAPAction(true);
         _call.setSOAPActionURI("urn:ws#getLastSituationJeu");
         _call.setSOAPVersion(org.apache.axis.soap.SOAPConstants.SOAP11_CONSTANTS);
@@ -446,7 +490,7 @@ public class AuthBindingStub extends org.apache.axis.client.Stub implements ws.A
             throw new org.apache.axis.NoEndPointException();
         }
         org.apache.axis.client.Call _call = createCall();
-        _call.setOperation(_operations[8]);
+        _call.setOperation(_operations[9]);
         _call.setUseSOAPAction(true);
         _call.setSOAPActionURI("urn:ws#getAlreadyPlayedGames");
         _call.setSOAPVersion(org.apache.axis.soap.SOAPConstants.SOAP11_CONSTANTS);

@@ -1,6 +1,7 @@
 package Model;
 
 public class SituationJeu {
+	@SuppressWarnings("unused")
 	private int Code;
 	private String Exposition;
 	private String Question;

@@ -7,136 +7,162 @@
 
 package ws;
 
-public class AuthLocator extends org.apache.axis.client.Service implements ws.Auth {
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.Properties;
 
-    public AuthLocator() {
-    }
+public class AuthLocator extends org.apache.axis.client.Service implements
+		ws.Auth {
+	
+	static String url = "";
+	
+	static{
+		String propertiePath = "ws/ws.properties";
 
+		Properties properties = new Properties();
 
-    public AuthLocator(org.apache.axis.EngineConfiguration config) {
-        super(config);
-    }
+		try {
+			properties.load(ClassLoader.getSystemResourceAsStream(propertiePath));
+			url = properties.getProperty("url");
+		} catch (FileNotFoundException fileNotFoundException) {
+			fileNotFoundException.printStackTrace();
+		} catch (IOException ioException) {
+			ioException.printStackTrace();
+		}
+	}	
 
-    public AuthLocator(java.lang.String wsdlLoc, javax.xml.namespace.QName sName) throws javax.xml.rpc.ServiceException {
-        super(wsdlLoc, sName);
-    }
+	public AuthLocator() {		
+	}
 
-    // Use to get a proxy class for authPort
-    private java.lang.String authPort_address = "http://localhost/xml/ws/WS.php";
+	public AuthLocator(org.apache.axis.EngineConfiguration config) {
+		super(config);	
+	}
 
-    public java.lang.String getauthPortAddress() {
-        return authPort_address;
-    }
+	public AuthLocator(java.lang.String wsdlLoc, javax.xml.namespace.QName sName)
+			throws javax.xml.rpc.ServiceException {
+		super(wsdlLoc, sName);
+	}
 
-    // The WSDD service name defaults to the port name.
-    private java.lang.String authPortWSDDServiceName = "authPort";
+	// Use to get a proxy class for authPort
+	private java.lang.String authPort_address = url;
 
-    public java.lang.String getauthPortWSDDServiceName() {
-        return authPortWSDDServiceName;
-    }
+	public java.lang.String getauthPortAddress() {
+		return authPort_address;
+	}
 
-    public void setauthPortWSDDServiceName(java.lang.String name) {
-        authPortWSDDServiceName = name;
-    }
+	// The WSDD service name defaults to the port name.
+	private java.lang.String authPortWSDDServiceName = "authPort";
 
-    public ws.AuthPortType getauthPort() throws javax.xml.rpc.ServiceException {
-       java.net.URL endpoint;
-        try {
-            endpoint = new java.net.URL(authPort_address);
-        }
-        catch (java.net.MalformedURLException e) {
-            throw new javax.xml.rpc.ServiceException(e);
-        }
-        return getauthPort(endpoint);
-    }
+	public java.lang.String getauthPortWSDDServiceName() {
+		return authPortWSDDServiceName;
+	}
 
-    public ws.AuthPortType getauthPort(java.net.URL portAddress) throws javax.xml.rpc.ServiceException {
-        try {
-            ws.AuthBindingStub _stub = new ws.AuthBindingStub(portAddress, this);
-            _stub.setPortName(getauthPortWSDDServiceName());
-            return _stub;
-        }
-        catch (org.apache.axis.AxisFault e) {
-            return null;
-        }
-    }
+	public void setauthPortWSDDServiceName(java.lang.String name) {
+		authPortWSDDServiceName = name;
+	}
 
-    public void setauthPortEndpointAddress(java.lang.String address) {
-        authPort_address = address;
-    }
+	public ws.AuthPortType getauthPort() throws javax.xml.rpc.ServiceException {
+		java.net.URL endpoint;
+		try {
+			endpoint = new java.net.URL(authPort_address);
+		} catch (java.net.MalformedURLException e) {
+			throw new javax.xml.rpc.ServiceException(e);
+		}
+		return getauthPort(endpoint);
+	}
 
-    /**
-     * For the given interface, get the stub implementation.
-     * If this service has no port for the given interface,
-     * then ServiceException is thrown.
-     */
-    public java.rmi.Remote getPort(Class serviceEndpointInterface) throws javax.xml.rpc.ServiceException {
-        try {
-            if (ws.AuthPortType.class.isAssignableFrom(serviceEndpointInterface)) {
-                ws.AuthBindingStub _stub = new ws.AuthBindingStub(new java.net.URL(authPort_address), this);
-                _stub.setPortName(getauthPortWSDDServiceName());
-                return _stub;
-            }
-        }
-        catch (java.lang.Throwable t) {
-            throw new javax.xml.rpc.ServiceException(t);
-        }
-        throw new javax.xml.rpc.ServiceException("There is no stub implementation for the interface:  " + (serviceEndpointInterface == null ? "null" : serviceEndpointInterface.getName()));
-    }
+	public ws.AuthPortType getauthPort(java.net.URL portAddress)
+			throws javax.xml.rpc.ServiceException {
+		try {
+			ws.AuthBindingStub _stub = new ws.AuthBindingStub(portAddress, this);
+			_stub.setPortName(getauthPortWSDDServiceName());
+			return _stub;
+		} catch (org.apache.axis.AxisFault e) {
+			return null;
+		}
+	}
 
-    /**
-     * For the given interface, get the stub implementation.
-     * If this service has no port for the given interface,
-     * then ServiceException is thrown.
-     */
-    public java.rmi.Remote getPort(javax.xml.namespace.QName portName, Class serviceEndpointInterface) throws javax.xml.rpc.ServiceException {
-        if (portName == null) {
-            return getPort(serviceEndpointInterface);
-        }
-        java.lang.String inputPortName = portName.getLocalPart();
-        if ("authPort".equals(inputPortName)) {
-            return getauthPort();
-        }
-        else  {
-            java.rmi.Remote _stub = getPort(serviceEndpointInterface);
-            ((org.apache.axis.client.Stub) _stub).setPortName(portName);
-            return _stub;
-        }
-    }
+	public void setauthPortEndpointAddress(java.lang.String address) {
+		authPort_address = address;
+	}
 
-    public javax.xml.namespace.QName getServiceName() {
-        return new javax.xml.namespace.QName("urn:ws", "auth");
-    }
+	/**
+	 * For the given interface, get the stub implementation. If this service has
+	 * no port for the given interface, then ServiceException is thrown.
+	 */
+	public java.rmi.Remote getPort(Class serviceEndpointInterface)
+			throws javax.xml.rpc.ServiceException {
+		try {
+			if (ws.AuthPortType.class
+					.isAssignableFrom(serviceEndpointInterface)) {
+				ws.AuthBindingStub _stub = new ws.AuthBindingStub(
+						new java.net.URL(authPort_address), this);
+				_stub.setPortName(getauthPortWSDDServiceName());
+				return _stub;
+			}
+		} catch (java.lang.Throwable t) {
+			throw new javax.xml.rpc.ServiceException(t);
+		}
+		throw new javax.xml.rpc.ServiceException(
+				"There is no stub implementation for the interface:  "
+						+ (serviceEndpointInterface == null ? "null"
+								: serviceEndpointInterface.getName()));
+	}
 
-    private java.util.HashSet ports = null;
+	/**
+	 * For the given interface, get the stub implementation. If this service has
+	 * no port for the given interface, then ServiceException is thrown.
+	 */
+	public java.rmi.Remote getPort(javax.xml.namespace.QName portName,
+			Class serviceEndpointInterface)
+			throws javax.xml.rpc.ServiceException {
+		if (portName == null) {
+			return getPort(serviceEndpointInterface);
+		}
+		java.lang.String inputPortName = portName.getLocalPart();
+		if ("authPort".equals(inputPortName)) {
+			return getauthPort();
+		} else {
+			java.rmi.Remote _stub = getPort(serviceEndpointInterface);
+			((org.apache.axis.client.Stub) _stub).setPortName(portName);
+			return _stub;
+		}
+	}
 
-    public java.util.Iterator getPorts() {
-        if (ports == null) {
-            ports = new java.util.HashSet();
-            ports.add(new javax.xml.namespace.QName("urn:ws", "authPort"));
-        }
-        return ports.iterator();
-    }
+	public javax.xml.namespace.QName getServiceName() {
+		return new javax.xml.namespace.QName("urn:ws", "auth");
+	}
 
-    /**
-    * Set the endpoint address for the specified port name.
-    */
-    public void setEndpointAddress(java.lang.String portName, java.lang.String address) throws javax.xml.rpc.ServiceException {
-        
-if ("authPort".equals(portName)) {
-            setauthPortEndpointAddress(address);
-        }
-        else 
-{ // Unknown Port Name
-            throw new javax.xml.rpc.ServiceException(" Cannot set Endpoint Address for Unknown Port" + portName);
-        }
-    }
+	private java.util.HashSet ports = null;
 
-    /**
-    * Set the endpoint address for the specified port name.
-    */
-    public void setEndpointAddress(javax.xml.namespace.QName portName, java.lang.String address) throws javax.xml.rpc.ServiceException {
-        setEndpointAddress(portName.getLocalPart(), address);
-    }
+	public java.util.Iterator getPorts() {
+		if (ports == null) {
+			ports = new java.util.HashSet();
+			ports.add(new javax.xml.namespace.QName("urn:ws", "authPort"));
+		}
+		return ports.iterator();
+	}
+
+	/**
+	 * Set the endpoint address for the specified port name.
+	 */
+	public void setEndpointAddress(java.lang.String portName,
+			java.lang.String address) throws javax.xml.rpc.ServiceException {
+
+		if ("authPort".equals(portName)) {
+			setauthPortEndpointAddress(address);
+		} else { // Unknown Port Name
+			throw new javax.xml.rpc.ServiceException(
+					" Cannot set Endpoint Address for Unknown Port" + portName);
+		}
+	}
+
+	/**
+	 * Set the endpoint address for the specified port name.
+	 */
+	public void setEndpointAddress(javax.xml.namespace.QName portName,
+			java.lang.String address) throws javax.xml.rpc.ServiceException {
+		setEndpointAddress(portName.getLocalPart(), address);
+	}
 
 }

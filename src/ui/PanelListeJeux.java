@@ -12,8 +12,6 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.rmi.RemoteException;
-import java.util.Arrays;
-
 import javax.swing.JButton;
 
 import ws.AuthPortTypeProxy;
@@ -23,8 +21,6 @@ import com.google.gson.Gson;
 import Model.User;
 
 public class PanelListeJeux extends JPanel {
-	private User player;
-	
 	private String listeJeux;
 	
 	private JFrame frame;
@@ -34,8 +30,6 @@ public class PanelListeJeux extends JPanel {
 	GridBagLayout gbl_panelContent;
 	
 	public void Refresh(final User player){
-		this.player = player;
-		
 		SwingWorker<Void, Void> sw = new SwingWorker<Void, Void>() {
 			
 			Gson gson = new Gson();
@@ -109,6 +103,20 @@ public class PanelListeJeux extends JPanel {
 					gbc_Recommencer.gridy = index;
 					panelContent.add(btnRecommencer, gbc_Recommencer);
 					
+					JButton btnClassement = new JButton("Classement");
+					btnClassement.addActionListener(new ActionListener() {
+						
+						@Override
+						public void actionPerformed(ActionEvent e) {
+							application.GoClassement(jeu);
+						}
+					});
+					GridBagConstraints gbc_Classement = new GridBagConstraints();
+					gbc_Classement.insets = new Insets(0, 0, 0, 0);
+					gbc_Classement.gridx = 5;
+					gbc_Classement.gridy = index;
+					panelContent.add(btnClassement, gbc_Classement);
+					
 					index++;
 				}
 				
@@ -123,9 +131,9 @@ public class PanelListeJeux extends JPanel {
 				rowWeights[index + 1] = Double.MIN_VALUE;
 				rowWeights[index] = 1;
 				
-				gbl_panelContent.columnWidths = new int[]{0, 0, 30, 0, 0, 0};
+				gbl_panelContent.columnWidths = new int[]{0, 0, 30, 0, 0, 0, 0};
 				gbl_panelContent.rowHeights = rowHeights;
-				gbl_panelContent.columnWeights = new double[]{1.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
+				gbl_panelContent.columnWeights = new double[]{1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
 				gbl_panelContent.rowWeights = rowWeights;
 				
 				frame.getContentPane().validate();

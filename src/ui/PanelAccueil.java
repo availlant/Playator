@@ -2,13 +2,11 @@ package ui;
 
 import javax.swing.JPanel;
 import javax.swing.JLabel;
-import java.awt.BorderLayout;
 import java.awt.Component;
 import javax.swing.SwingConstants;
 import java.awt.Font;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
-import javax.swing.JScrollPane;
 import java.awt.Insets;
 
 public class PanelAccueil extends JPanel {
