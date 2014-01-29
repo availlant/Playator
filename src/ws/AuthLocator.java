@@ -7,7 +7,6 @@
 
 package ws;
 
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Properties;
@@ -18,12 +17,12 @@ public class AuthLocator extends org.apache.axis.client.Service implements
 	static String url = "";
 	
 	static{
-		String propertiePath = "src/ws/ws.properties";
+		String propertiePath = "ws/ws.properties";
 
 		Properties properties = new Properties();
 
 		try {
-			properties.load(new FileInputStream(propertiePath));
+			properties.load(ClassLoader.getSystemResourceAsStream(propertiePath));
 			url = properties.getProperty("url");
 		} catch (FileNotFoundException fileNotFoundException) {
 			fileNotFoundException.printStackTrace();
@@ -45,7 +44,7 @@ public class AuthLocator extends org.apache.axis.client.Service implements
 	}
 
 	// Use to get a proxy class for authPort
-	private java.lang.String authPort_address = "http://localhost/xml2/ws/WS.php";
+	private java.lang.String authPort_address = url;
 
 	public java.lang.String getauthPortAddress() {
 		return authPort_address;
